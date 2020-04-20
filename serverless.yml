@@ -34,3 +34,5 @@ functions:
       - http:
           method: get
           path: /restaurants
+    environment:
+      restaurantsTable: restaurants
