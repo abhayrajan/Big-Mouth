@@ -35,4 +35,5 @@ functions:
           method: get
           path: /restaurants
     environment:
+      defaultResultCount: 10
       restaurantsTable: restaurants
