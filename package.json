@@ -7,10 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "moment": "^2.24.0",
+    "mustache": "^4.0.1",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.17",
+    "@types/moment": "^2.13.0",
+    "@types/mustache": "^4.0.1",
     "@types/node": "^10.12.18",
     "aws-sdk": "^2.658.0",
     "co": "^4.6.0",
