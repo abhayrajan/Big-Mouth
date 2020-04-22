@@ -17,7 +17,7 @@ const getRestaurants = async (numResults: number) => {
 };
 
 export const handler: APIGatewayProxyHandler = async (event, _context) => {
-  let restaurants = getRestaurants(defaultResultCount);
+  let restaurants = await getRestaurants(defaultResultCount);
 
   return {
     statusCode: 200,
