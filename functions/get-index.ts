@@ -4,6 +4,8 @@ import { promises as fs } from "fs";
 import * as Mustache from "mustache";
 import * as moment from "moment";
 import axios from "axios";
+import * as aws4 from "aws4";
+import { URL } from "url";
 
 const restaurantsApiRoot = process.env.restaurants_api;
 let html = "";
@@ -16,7 +18,20 @@ const loadHtml = async () => {
 };
 
 const getRestaurants = async () => {
-  let response = await axios.get(restaurantsApiRoot);
+  let url = new URL(restaurantsApiRoot);
+  let opts = {
+    host: url.hostname,
+    path: url.pathname,
+  };
+  aws4.sign(opts);
+  let response = await axios.get(restaurantsApiRoot, {
+    headers: {
+      Host: opts["headers"]["Host"],
+      "X-Amz-Date": opts["headers"]["X-Amz-Date"],
+      Authorization: opts["headers"]["Authorization"],
+      "X-Amz-Security-Token": opts["headers"]["X-Amz-Security-Token"],
+    },
+  });
   return response.data;
 };
 

@@ -21,6 +21,9 @@ provider:
     - Effect: Allow
       Action: dynamodb:Scan
       Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/restaurants
+    - Effect: Allow
+      Action: execute-api:Invoke
+      Resource: arn:aws:execute-api:#{AWS::Region}:#{AWS::AccountId}:*/*/GET/restaurants
 
   apiGateway:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
@@ -43,6 +46,7 @@ functions:
       - http:
           method: get
           path: /restaurants
+          authorizer: aws_iam
     environment:
       defaultResultCount: 10
       restaurantsTable: restaurants
