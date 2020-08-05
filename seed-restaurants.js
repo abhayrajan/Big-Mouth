@@ -2,6 +2,8 @@
 
 const co = require("co");
 const AWS = require("aws-sdk");
+var credentials = new AWS.SharedIniFileCredentials({ profile: "training" });
+AWS.config.credentials = credentials;
 AWS.config.region = "us-east-1";
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 

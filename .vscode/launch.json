@@ -8,14 +8,14 @@
       "type": "node",
       "request": "launch",
       "name": "get-restaurants",
-      "program": "${env:NVM_BIN}/sls",
+      "program": "/usr/local/bin/sls",
       "args": ["invoke", "local", "-f", "get-restaurants", "-d", "{}"]
     },
     {
       "type": "node",
       "request": "launch",
       "name": "get-index",
-      "program": "${env:NVM_BIN}/sls",
+      "program": "/usr/local/bin/sls",
       "args": ["invoke", "local", "-f", "get-index", "-d", "{}"]
     }
   ]

@@ -16,6 +16,7 @@ plugins:
 
 provider:
   name: aws
+  profile: training
   runtime: nodejs12.x
   iamRoleStatements:
     - Effect: Allow
@@ -38,8 +39,7 @@ functions:
           method: get
           path: /
     environment:
-      restaurants_api: "https://tixodawy85.execute-api.us-east-1.amazonaws.com/dev/restaurants"
-
+      restaurants_api: "https://fh1etgpn9a.execute-api.us-east-1.amazonaws.com/dev/restaurants"
   get-restaurants:
     handler: functions/get-restaurants.handler
     events:
