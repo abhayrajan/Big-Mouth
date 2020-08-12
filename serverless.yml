@@ -40,6 +40,8 @@ functions:
           path: /
     environment:
       restaurants_api: "https://fh1etgpn9a.execute-api.us-east-1.amazonaws.com/dev/restaurants"
+      cognito_user_pool_id: us-east-1_mg6hanclj
+      cognito_client_id: 12c4o2prgfrsolrut0kbru570i
   get-restaurants:
     handler: functions/get-restaurants.handler
     events:
@@ -50,7 +52,16 @@ functions:
     environment:
       defaultResultCount: 10
       restaurantsTable: restaurants
-
+  search-restaurants:
+    handler: functions/search-restaurants.handler
+    events:
+      - http:
+          method: post
+          path: /restaurants/search
+          authorizer:
+            arn: arn:aws:cognito-idp:us-east-1:424798016784:userpool/us-east-1_mg6hanclj
+    environment:
+      restaurantsTable: restaurants
 resources:
   Resources:
     restaurantsTable:

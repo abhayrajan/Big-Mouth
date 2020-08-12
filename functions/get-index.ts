@@ -7,6 +7,9 @@ import axios from "axios";
 import * as aws4 from "aws4";
 import { URL } from "url";
 
+const awsRegion = process.env.AWS_REGION;
+const cognitoUserPoolId = process.env.cognito_user_pool_id;
+const cognitoClientId = process.env.cognito_client_id;
 const restaurantsApiRoot = process.env.restaurants_api;
 let html = "";
 
@@ -39,7 +42,15 @@ export const handler: APIGatewayProxyHandler = async (event, _context) => {
   let template = await loadHtml();
   let restaurants = await getRestaurants();
   let dayOfWeek = moment().format("dddd");
-  let html = Mustache.render(template, { dayOfWeek, restaurants });
+  let view = {
+    dayOfWeek,
+    restaurants,
+    awsRegion,
+    cognitoUserPoolId,
+    cognitoClientId,
+    searchUrl: `${restaurantsApiRoot}/search`,
+  };
+  let html = Mustache.render(template, view);
 
   return {
     statusCode: 200,
