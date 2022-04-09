@@ -9,7 +9,7 @@
   "dependencies": {
     "aws4": "^1.10.0",
     "axios": "^0.19.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mustache": "^4.0.1",
     "source-map-support": "^0.5.10",
     "url": "^0.11.0"
